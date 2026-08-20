@@ -1,6 +1,8 @@
-# Purple Team Framework
+# The Detection Evidence Framework
 
 An open teaching framework for running purple team engagements that produce honest detection evidence and a backlog that closes.
+
+Purple teaming is the method. Evidence is the product.
 
 **Author:** Clint P. Garrison / CarbeneAI
 **License:** [CC BY 4.0](LICENSE)

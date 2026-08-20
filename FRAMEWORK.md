@@ -1,4 +1,4 @@
-# Purple Team Framework
+# The Detection Evidence Framework
 
 **Author:** Clint P. Garrison / CarbeneAI
 **License:** [CC BY 4.0](LICENSE)
