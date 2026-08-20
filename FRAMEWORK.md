@@ -410,7 +410,7 @@ This is a completed cycle packet. It is not a claim about a named hospital.
 - Objective: Determine whether use of a stolen domain account on the clinical remote-access gateway (T1133, T1078.002), followed by collection of two synthetic referral PDFs from a department file share (T1039), produces an actionable alert within 30 minutes.
 - In scope: Remote-access gateway logs, identity provider sign-in logs, one Windows file server used for department shares, synthetic document set tagged as synthetic, one standard user test account in a clinical AD group.
 - Out of scope: Production EHR, medical devices, backup appliances, domain controllers (observe only; no intentional DC compromise), break-glass accounts.
-- Window: Sunday 09:00–12:00 local.
+- Window: Sunday 09:00 to 12:00 local.
 - Data handling: Synthetic files only. Screenshots cropped to alert metadata. Evidence access limited to named Blue operators and the Engagement Lead. Retention 90 days then delete.
 - Stop conditions: Any clinical ticket about gateway outage; lockout of non-test accounts; real ePHI found in the synthetic share; any medical device in the traffic path.
 - Success: Outcome labels and timestamps for T1133, T1078.002, and T1039. Not "Red reached the share."
@@ -543,7 +543,7 @@ Do not invent industry-average MTTD charts.
 
 **Safety gate**
 
-Engagement Lead, Cloud IAM owner, Fraud operations lead. Compliance informed for evidence retention. Window: Wednesday 14:00–16:00 local in lab.
+Engagement Lead, Cloud IAM owner, Fraud operations lead. Compliance informed for evidence retention. Window: Wednesday 14:00 to 16:00 local in lab.
 
 **Execute and observe**
 
@@ -667,7 +667,7 @@ Less useful: ATT&CK heatmaps with no agency outcomes; vendor marketing without t
 
 **Safety gate**
 
-Engagement Lead, RMS application owner, vendor liaison. On-duty communications supervisor informed of the window. Synthetic case IDs confirmed. Window: Tuesday 10:00–11:30 local, outside planned vendor maintenance.
+Engagement Lead, RMS application owner, vendor liaison. On-duty communications supervisor informed of the window. Synthetic case IDs confirmed. Window: Tuesday 10:00 to 11:30 local, outside planned vendor maintenance.
 
 **Execute and observe**
 
