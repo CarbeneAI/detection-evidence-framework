@@ -1,6 +1,6 @@
 # Purple Team Framework
 
-An original, open teaching framework for running purple team engagements that produce honest detection evidence and a backlog that closes.
+An open teaching framework for running purple team engagements that produce honest detection evidence and a backlog that closes.
 
 **Author:** Clint P. Garrison / CarbeneAI
 **License:** [CC BY 4.0](LICENSE)
@@ -9,11 +9,7 @@ An original, open teaching framework for running purple team engagements that pr
 
 Purple teaming is offense and defense working the same scenario at the same time so you can prove which attacker behaviors you detect, which you miss, and what you will fix next.
 
-This repository gives you a **sector-neutral core** (`FRAMEWORK.md`) for scope, technique selection, safety gates, scoring, backlog, roles, cadence, and executive reporting, plus **sector overlays**:
-
-- [`sectors/healthcare.md`](sectors/healthcare.md) - HIPAA constraints, clinical availability, PHI handling, ransomware-path realism without unsafe detonation
-- [`sectors/fintech.md`](sectors/fintech.md) - examiner-ready evidence, fraud/security handoff, PCI DSS scope boundaries
-- [`sectors/public-safety-tech.md`](sectors/public-safety-tech.md) - CJIS-adjacent sensitivity, field devices, chain of custody, life-safety exclusions
+[`FRAMEWORK.md`](FRAMEWORK.md) is the document. It contains a sector-neutral core cycle (scope, procedure selection, safety gates, scoring, backlog, roles, cadence, executive reporting) and three sector sections that apply the same cycle in healthcare, financial services, and public safety technology.
 
 It teaches derivation: why each step exists, what coverage metrics do not prove, and how to turn misses into owned work. It is not a product pitch, a vendor heatmap, or a compliance certificate.
 
@@ -23,10 +19,10 @@ Detection engineers and SOC leads who need proof; offensive operators who want t
 
 ## How to use it
 
-1. Read [`FRAMEWORK.md`](FRAMEWORK.md) end to end.
-2. If you operate in a covered sector, read the matching overlay before you write scope.
-3. Run one cycle with a short technique list (often 3 to 7 items).
-4. Score with the core outcome labels (Prevented, Detected - actionable, Detected - weak, Logged only, Missed, Not testable).
+1. Read [`FRAMEWORK.md`](FRAMEWORK.md) end to end. The core cycle (Sections 1 through 10) stands alone.
+2. If you operate in a covered sector, read that sector section before you write scope.
+3. Run one cycle with a short procedure list. A teaching default is 3 to 7 sub-techniques or named procedures.
+4. Score with the core outcome labels (Prevented, Detected-actionable, Detected-weak, Logged only, Missed, Not testable). Do not collapse those labels into a number.
 5. File backlog items with acceptance tests. Retest next cycle.
 6. Keep the executive summary to one page and one ask.
 
@@ -36,15 +32,12 @@ Start small. One honest cycle beats a matrix you never retest.
 
 Not a replacement for penetration tests, red team operations, or incident response. Not legal advice or compliance certification. Not exploit code or instructions to attack systems without authorization.
 
-Only test systems you are authorized to test. Sector overlays list default off-limits behaviors; your laws, contracts, and safety rules still govern.
+Only test systems you are authorized to test. Sector sections list default off-limits behaviors; your laws, contracts, and safety rules still govern.
 
 ## Repository layout
 
 ```
-FRAMEWORK.md                 Core cycle (read first)
-sectors/healthcare.md        Healthcare overlay
-sectors/fintech.md           FinTech overlay
-sectors/public-safety-tech.md
+FRAMEWORK.md                 Core cycle and sector sections
 AI-DISCLOSURE.md             AI assistance disclosure
 CONTRIBUTING.md              How to propose changes
 LICENSE                      CC BY 4.0
