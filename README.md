@@ -25,10 +25,14 @@ Detection engineers and SOC leads who need proof; offensive operators who want t
 2. If you operate in a covered sector, read that sector section before you write scope.
 3. Run one cycle with a short procedure list. A teaching default is 3 to 7 sub-techniques or named procedures.
 4. Score with the core outcome labels (Prevented, Detected-actionable, Detected-weak, Logged only, Missed, Not testable). Do not collapse those labels into a number.
-5. File backlog items with acceptance tests. Retest next cycle.
+5. File backlog items with acceptance tests. Retest next cycle. Where your tooling allows, close fixes as version-controlled detections and runbooks with automated tests (Section 6.1).
 6. Keep the executive summary to one page and one ask.
 
 Start small. One honest cycle beats a matrix you never retest.
+
+## What changed in 1.2
+
+Section 6.1 adds detection as code and runbook as code: how to ship backlog fixes as reviewed, versioned, tested detections and rehearsed response runbooks, so retests can run from a pipeline instead of depending on memory. The Response field in Section 3.4 now records the runbook name and version. The outcome labels, scoring unit, and backlog fields are unchanged.
 
 ## What this is not
 

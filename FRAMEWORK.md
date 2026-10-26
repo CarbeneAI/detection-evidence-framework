@@ -2,7 +2,7 @@
 
 **Author:** Clint P. Garrison / CarbeneAI
 **License:** [CC BY 4.0](LICENSE)
-**Version:** 1.1
+**Version:** 1.2
 
 A teaching framework for purple team engagements that produce detection evidence you can defend, and a backlog that closes.
 
@@ -130,7 +130,7 @@ For each procedure, capture:
 - **Expected artifact:** What should appear in logs or telemetry if instrumentation works.
 - **Observed artifact:** What actually appeared, where, and when.
 - **Alert:** Fired / did not fire / fired with wrong severity or incomplete context.
-- **Response:** Did an analyst or automated playbook act? Within what time?
+- **Response:** Did an analyst or automated playbook (runbook) act? Within what time? Record the runbook name and version, or note that none existed.
 
 Do not grade on Red creativity. Grade on whether the environment told the truth about the behavior.
 
@@ -247,12 +247,39 @@ Every weak hit and miss that you choose to fix becomes a backlog item with enoug
 - **Proposed change:** Concrete. "Add alert on X when Y" beats "improve detection."
 - **Owner:** Named Control Owner or team.
 - **Priority:** Critical / High / Medium / Low, with a one-line reason tied to impact if missed.
-- **Acceptance test:** The exact purple retest that will prove the fix. Schedule it.
+- **Acceptance test:** The exact purple retest that will prove the fix. Schedule it. When practical, write it as an automated test (see 6.1).
 - **Status:** New / Accepted / Rejected / In progress / Retested-pass / Retested-fail.
 
 ### Derivation: why acceptance tests matter
 
 Without a retest, "fixed" means "someone believes they deployed a rule." Purple teaming's value compounds when backlog items return to Execute & Observe. Close the loop or admit the item is still open.
+
+### 6.1 Ship fixes as code: detection as code and runbook as code
+
+A backlog item that closes by someone editing a rule in a console is hard to review, hard to roll back, and easy to break by accident later. Where your tooling allows it, close backlog items with changes that live in version control. This section describes two practices. Neither is required to run a purple cycle, and neither changes the outcome labels, the scoring unit, or the backlog fields.
+
+**Detection as code.** Treat each detection as a versioned artifact, not a setting in a console.
+
+- Store the rule (Sigma, SIEM query, EDR custom rule, or whatever your platform supports) in a repository with an owner, the ATT&CK sub-technique or named procedure it covers, and the backlog ID that created it.
+- Review changes by pull request, so a second person checks logic, scope, and noise before it deploys.
+- Deploy through a pipeline, not by hand, so production matches what was reviewed and a bad change can be rolled back.
+- Attach a test to every rule: a replay of the purple procedure, or sample telemetry, that must produce the expected alert. The test is the machine-readable form of the acceptance test.
+- Run those tests on a schedule and after platform changes (new EDR version, parser change, SIEM migration), so a silent break shows up as a failed test before it shows up as a miss in the next cycle.
+- Retire or rewrite rules that no longer fire, no longer apply, or produce only noise. Record why.
+
+**Runbook as code.** Treat response steps the same way.
+
+- Write the response to a procedure as an executable or at least version-controlled playbook: triage questions, enrichment steps, containment options, escalation, and who approves what.
+- Automate enrichment and low-risk steps first. Keep a named human approval gate on any step that disrupts users, systems, or patient or payment operations.
+- Log every run: what ran, who or what approved it, and the result. Those logs become evidence for Section 9.
+- Rehearse the runbook in the next purple cycle. In Section 3.4, the "Response" field then records whether the runbook ran as written, how long it took, and what had to be done by hand.
+- If an AI agent executes any step, apply the same rules and add least privilege, a human approval gate for consequential actions, and a complete action log. Test the agent's behavior with the same shared-scenario method as any other control.
+
+**Derivation: why code helps a purple program.** Purple teaming proves a detection worked on one day. Code keeps it provable on the next. Version history shows who changed what and why, tests catch regressions before an adversary does, and the same procedure list from the last cycle can be replayed to produce the retest evidence.
+
+**What this does not prove.** A passing automated test shows the detection fires on the replayed behavior in your test conditions. It does not show that an adaptive attacker will be detected, that the telemetry source is complete in production, or that analysts will act on the alert. Keep scoring real outcomes with the Section 5 labels. Automated replay supports the retest; it does not replace Execute and Observe.
+
+**Teaching default for adoption.** Start with the Critical and High backlog items from one cycle. Convert those detections and their runbooks to code, attach a test to each, and run the retest from the pipeline. Expand only when that works. If you lack a pipeline, a repository with reviewed rules and a manual deploy checklist already gives you history and review.
 
 ### Rejection is a valid outcome
 
